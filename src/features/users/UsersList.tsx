@@ -6,21 +6,15 @@ const UsersList = () => {
   const [deleteUser] = useDeleteUserMutation();
 
   return (
-    <>
-      <div>
-        {users?.map(
-          ({ id, username }) => (
-            <>
-              <div key={id}>
-                <div>{id}</div>
-                <div>{username}</div>
-                <button onClick={() => deleteUser(id)}>Delete</button>
-              </div>
-            </>
-          ))}
-      </div>
-    </>
-
+    <div>
+      {users?.map(
+        ({ id, username }) => (
+          <div key={id}>
+            <div>{username}</div>
+            <button onClick={() => deleteUser({ id: 1 })}>Delete</button>
+          </div>
+        ))}
+    </div>
   )
 }
 
