@@ -1,13 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface User {
-  id: string,
-  username: string
+  id: number,
+  name: string,
+  description: string
 }
 
 export const usersApi = createApi({
   reducerPath: "usersApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://jsonplaceholder.typicode.com" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3500/" }),
   tagTypes: ["Users"],
   endpoints: (builder) => ({
     getUsers: builder.query<User[], void>({
@@ -31,7 +32,7 @@ export const usersApi = createApi({
       invalidatesTags: ["Users"]
     }),
     deleteUser: builder.mutation({
-      query: ({ id }) => ({
+      query: (id) => ({
         url: `/users/${id}`,
         method: "DELETE",
         body: id,

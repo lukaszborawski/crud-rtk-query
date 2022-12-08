@@ -2,16 +2,19 @@ import { useGetUsersQuery, useDeleteUserMutation } from "../api/usersApi";
 
 const UsersList = () => {
 
-  const { data: users } = useGetUsersQuery();
+  const { data: users, isLoading, isError } = useGetUsersQuery();
   const [deleteUser] = useDeleteUserMutation();
 
   return (
     <div>
+      {isLoading && <p>Loading...</p>}
+      {isError && <p>Error. Try again later.</p>}
       {users?.map(
-        ({ id, username }) => (
+        ({ id, name, description }) => (
           <div key={id}>
-            <div>{username}</div>
-            <button onClick={() => deleteUser({ id: 1 })}>Delete</button>
+            <div>{name}</div>
+            <div>{description}</div>
+            <button onClick={() => deleteUser(id)}>Delete</button>
           </div>
         ))}
     </div>
