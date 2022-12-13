@@ -1,4 +1,5 @@
 import { useGetUsersQuery, useDeleteUserMutation } from "../api/usersApi";
+import AddUser from "./AddUser";
 
 const UsersList = () => {
 
@@ -9,6 +10,7 @@ const UsersList = () => {
     <div>
       {isLoading && <p>Loading...</p>}
       {isError && <p>Error. Try again later.</p>}
+      <AddUser />
       {users?.map(
         ({ id, name, description }) => (
           <div key={id}>
