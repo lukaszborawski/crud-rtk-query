@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Modal from '../../components/Modal';
 import { useUpdateUserMutation } from '../api/usersApi';
 
 
@@ -17,24 +18,26 @@ const EditUser = () => {
   }
 
   return (
-    <form>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="text"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <button
-        type="button"
-        onClick={handleEdit}
-      >
-        Save
-      </button>
-    </form>
+    <Modal>
+      <form>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <button
+          type="button"
+          onClick={handleEdit}
+        >
+          Save
+        </button>
+      </form>
+    </Modal>
   )
 }
 
