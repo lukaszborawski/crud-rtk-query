@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Modal from '../../components/Modal';
-import { useUpdateUserMutation } from '../api/usersApi';
+import { User, useUpdateUserMutation } from '../api/usersApi';
 
 
-const EditUser = () => {
+const EditUser = ({ id }: User) => {
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -11,6 +11,7 @@ const EditUser = () => {
 
   const handleEdit = () => {
     const userProfile = {
+      id,
       name,
       description,
     }

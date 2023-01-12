@@ -1,14 +1,12 @@
-import { useGetUsersQuery, useDeleteUserMutation } from "../api/usersApi";
+import { useGetUsersQuery } from "../api/usersApi";
 import AddUser from "./AddUser";
-import { useState } from 'react';
-import EditUser from "./EditUser";
+import UserProfile from "./UserProfile";
+
+
 
 const UsersList = () => {
 
   const { data: users, isLoading, isError } = useGetUsersQuery();
-  const [deleteUser] = useDeleteUserMutation();
-
-  const [openModal, setOpenModal] = useState(false);
 
   return (
     <div>
@@ -17,14 +15,13 @@ const UsersList = () => {
       <AddUser />
       {users?.map(
         ({ id, name, description }) => (
-          <div key={id}>
-            <div>{name}</div>
-            <div>{description}</div>
-            <button onClick={() => deleteUser(id)}>Delete</button>
-            <button onClick={() => setOpenModal(true)}>Edit</button>
-          </div>
+          <UserProfile
+            key={id}
+            id={id}
+            name={name}
+            description={description}
+          />
         ))}
-      {openModal && <EditUser />}
     </div>
   )
 }
